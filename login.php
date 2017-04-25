@@ -1,8 +1,30 @@
-<?php
+<?php 
+if(!isset($_POST['crear'])){
+    ?>
+    
+<form action="" method="POST">
+    
+    Nombre de usuario <input type="text" name="n_u"/>
+    <br>
+    Contraseña <input type="password" name="pass"/>
+    <br>
+    Nombre (real no fake) <input type="text" name="nombre"/>
+    <br>
+    Apellido <input type="text" name="apellido"/>
+    <br>
+    <input type="submit" name="crear" value="crear"/>
+</form>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    <?php
+}else{
+    $nu = $_POST['n_u'];
+    $pass = $_POST['pass'];
+    $nombre = $_POST['nombre'];
+    $ape = $_POST['apellido'];
+    
+    echo $nu.$pass.$nombre.$ape;
+}
+
+?>
+
 
