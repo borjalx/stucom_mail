@@ -11,6 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <a href="login.php"> Iniciar sesión </a>
+        <hr>
         <a href="crear_u.php"> Crear usuario<a/>
     </body>
 </html>
