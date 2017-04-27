@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require_once 'bbdd_mail.php';
 
 if(isset($_POST['entrar'])){
@@ -10,10 +11,13 @@ if(isset($_POST['entrar'])){
         echo "Usuario o contraseña erronea!";
         echo '<a href="index.php"> Volver al índice </a>';
     }else{
-        session_start();
-        $_SESSION["user"] = $username;
-        $_SESSION["apellido"] = $array["surname"];
-        $_SESSION["nombre"] = $array["name"];
+        
+        
+        $date = getdate();
+        
+        $fecha = $date['year']."-".$date['mon']."-".$date['mday']." ".$date['hours'].":".$date['minutes'].":".$date['seconds'];
+        
+        registrar_inicioSesion($n_u, $fecha);
         if ($tipo == 0) {
             // Dirigimos al usuario a su homePage.
             header("Location: paginaUsuario.php");

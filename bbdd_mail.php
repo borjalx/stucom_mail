@@ -17,7 +17,7 @@ function crearUsuario($nombre_usuario, $contraseña, $nombre, $apellido){
         echo '<a href="index.php"> Volver al índice </a>';
     } else {
         echo 'Error!';
-        mysqli_errno($con);
+        mysqli_error($con);
     }
     
     desconectar($con);
@@ -47,19 +47,35 @@ function verificarUsuario($nombre_usuario, $contraseña){
     
     desconectar($con);
     if ($filas > 0) {
-        // Comprobamos que la contraseña es correcta
-        $fila = mysqli_fetch_array($resultado);
-        extract($fila);
-//        if (password_verify($pass, $password)) {
-//            return true;
-//        } else {
-//            return false;
-//        }
+
+        //$fila = mysqli_fetch_array($resultado);
+        
+        $_SESSION["apellido"] = $array["surname"];
+        $_SESSION["nombre"] = $array["name"];
+        
+        extract($array);
+        session_start();
+        //$_SESSION["user"] = $n_u;        
+        echo $name;
         return password_verify($contraseña, $password);
-    } else {    // Este else no hace falta
+    } else {    
         return false;
     }
 
+}
+
+function registrar_inicioSesion($nombre_usuario,$fecha){
+    $con = conexion("msg");
+    $consulta = "INSERT INTO event (`user`, `date`, `type`) VALUES ('$nombre_usuario', '$fecha', 'i')";
+    
+    if(mysqli_query($con, $consulta)){
+        echo "Sesión iniciadas";
+    } else {
+        echo 'Error!';
+        mysqli_error($con);
+    }
+    
+    desconectar($con);
 }
 ?>
 
