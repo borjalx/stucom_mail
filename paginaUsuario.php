@@ -15,3 +15,5 @@ echo "Nombre = ".$nombre."<br>";
 <a href="cambiarpass.php"> Cambiar contraseña</a>
 <hr>
 <a href="enviarMensaje.php"> Enviar mensaje </a>
+<hr>
+<a href="consultaMensajes.php"> Consultar mensajes </a>

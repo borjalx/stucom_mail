@@ -9,7 +9,8 @@ if(isset($_POST['enviar'])){
     $mensaje = $_POST['mens'];
     $date = getdate();
     $fecha = $date['year']."-".$date['mon']."-".$date['mday']." ".$date['hours'].":".$date['minutes'].":".$date['seconds'];
-
+    
+    registrar_redaccionM($emisor, $fecha);
     enviarMensaje($emisor, $receptor, $fecha, $asunto, $mensaje);
 }else{
     ?>

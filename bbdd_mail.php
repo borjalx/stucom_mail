@@ -93,6 +93,20 @@ function registrar_redaccionM($nombre_usuario,$fecha){
     desconectar($con);
 }
 
+function registrar_consultaM($nombre_usuario,$fecha){
+    $con = conexion("msg");
+    $consulta = "INSERT INTO event (`user`, `date`, `type`) VALUES ('$nombre_usuario', '$fecha', 'c')";
+    
+    if(mysqli_query($con, $consulta)){
+        echo "Consulta de mensajes";
+    } else {
+        echo 'Error!';
+        mysqli_error($con);
+    }
+    
+    desconectar($con);
+}
+
 function cambiarPass($nombre_usuario,$contraseña){
     $con = conexion("msg");
     $consulta = "UPDATE user SET password='$contraseña' WHERE username='$nombre_usuario'";
@@ -125,6 +139,15 @@ function enviarMensaje($emisor,$receptor,$fecha,$asunto,$mensaje){
         echo mysqli_error($con);
     }
     desconectar($con);
+}
+
+function mostrarMensajes($nombre_usuario){
+    $con = conexion("msg");
+    $consulta = "select * from message where receiver = '$nombre_usuario'";
+    
+    $resultado = mysqli_query($con, $consulta);
+    desconectar($con);
+    return $resultado;
 }
 ?>
 
