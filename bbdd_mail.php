@@ -141,13 +141,53 @@ function enviarMensaje($emisor,$receptor,$fecha,$asunto,$mensaje){
     desconectar($con);
 }
 
-function mostrarMensajes($nombre_usuario){
+function mostrarMensajes($nombre_usuario,$posicion, $cantidad){
     $con = conexion("msg");
-    $consulta = "select * from message where receiver = '$nombre_usuario'";
+    $consulta = "select * from message where receiver = '$nombre_usuario' limit $posicion, $cantidad";
     
     $resultado = mysqli_query($con, $consulta);
     desconectar($con);
     return $resultado;
+}
+
+function mensajesEnviados($nombre_usuario,$posicion, $cantidad){
+    $con = conexion("msg");
+    $consulta = "select * from message where sender = '$nombre_usuario' limit $posicion, $cantidad";
+    
+    $resultado = mysqli_query($con, $consulta);
+    desconectar($con);
+    return $resultado;
+}
+
+function cambiarMensajeaLeido($idmensaje){
+    $con = conexion("msg");
+    $consulta = "UPDATE message SET `read`=1 WHERE idmessage = '$idmensaje'";
+    if (mysqli_query($con, $consulta)) {
+
+    } else {
+        echo mysqli_error($con);
+    }
+    desconectar($con);
+}
+
+function totalMensajesEnviados($nombre_usuario){
+    $con = conexion("msg");
+    $select = "select count(*) as count from message where sender = '$nombre_usuario'";
+    $resultado = mysqli_query($con, $select);
+    $fila = mysqli_fetch_array($resultado);
+    extract($fila);
+    desconectar($con);
+    return $count;
+}
+
+function totalMensajesRecividos($nombre_usuario){
+    $con = conexion("msg");
+    $select = "select count(*) as count from message where receiver = '$nombre_usuario'";
+    $resultado = mysqli_query($con, $select);
+    $fila = mysqli_fetch_array($resultado);
+    extract($fila);
+    desconectar($con);
+    return $count;
 }
 ?>
 

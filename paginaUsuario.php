@@ -17,3 +17,5 @@ echo "Nombre = ".$nombre."<br>";
 <a href="enviarMensaje.php"> Enviar mensaje </a>
 <hr>
 <a href="consultaMensajes.php"> Consultar mensajes </a>
+<hr>
+<a href="consultarEnviados.php"> Mensajes enviados </a>
