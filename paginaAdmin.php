@@ -1,8 +1,21 @@
 <?php
+session_start();
+require_once 'bbdd_mail.php';
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+if($_SESSION["tipo"] == 1){
+?>
+<a href="usuariosSistema.php"> Usuarios del sistema</a>
+<hr>
+<a href="registrarUsuarios.php"> Registrar usuarios</a>
+<hr>
+<a href="eliminarUsuario.php"> Eliminar usuario</a>
+<hr>
+
+<?php
+}else{
+    echo "No eres administrador. Lo siento, no puedes entrar";
+    
+}
+
+?>
 

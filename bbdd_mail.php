@@ -23,6 +23,21 @@ function crearUsuario($nombre_usuario, $contraseña, $nombre, $apellido){
     desconectar($con);
 }
 
+function crearAdministrador($nombre_usuario, $contraseña, $nombre, $apellido){
+    $con = conexion("msg");
+    $consulta = "insert into user values ('$nombre_usuario','$contraseña', '$nombre', '$apellido',1)";
+    
+    if(mysqli_query($con, $consulta)){
+        echo "Administrador añadido correctamente";
+        echo '<a href="paginaAdmin.php"> Volver a la página principal </a>';
+    } else {
+        echo 'Error!';
+        mysqli_error($con);
+    }
+    
+    desconectar($con);
+}
+
 function existeUsuario($nombre_usuario){
     $con = conexion("msg");
     $consulta = "select * from user where username = '$nombre_usuario'";
@@ -188,6 +203,27 @@ function totalMensajesRecividos($nombre_usuario){
     extract($fila);
     desconectar($con);
     return $count;
+}
+
+function consultarUsuarios(){
+    $con = conexion("msg");
+    $query = "select * from user";
+    
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado;
+}
+
+function eliminarUsuario($nombre_usuario){
+    $con = conexion("msg");
+    $consulta = "DELETE FROM user WHERE username = '$nombre_usuario'";
+    if (mysqli_query($con, $consulta)) {
+        echo "Usuario eliminado";
+        echo "<a href='paginaAdmin.php'> Volver </a>";
+    } else {
+        echo mysqli_error($con);
+    }
+    desconectar($con);
 }
 ?>
 
