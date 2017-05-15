@@ -44,7 +44,7 @@ if (isset($_SESSION['tipo']) == 1) {
 </table>
 <?php
 if ($posicion >0) {
-    echo "<a href='consultarMensajes.php?posicion=" . ($posicion - 5) . "'>&lt;&lt;</a>";
+    echo "<a href='consultaMensajes.php?posicion=" . ($posicion - 5) . "'>&lt;&lt;</a>";
 }
 //Mostramos referencia a lo que mostramos
 if ($posicion + 5 <= $total) {
@@ -54,7 +54,7 @@ if ($posicion + 5 <= $total) {
 }
 // Comprobamos si hay más páginas (por delante)
 if ($posicion + 5 < $total) {
-    echo "<a href='consultarMensajes.php?posicion=" . ($posicion + 5) . "'>&gt;&gt;</a>";
+    echo "<a href='consultaMensajes.php?posicion=" . ($posicion + 5) . "'>&gt;&gt;</a>";
 }
 ?>
 <form action="" method="POST">
@@ -79,7 +79,7 @@ if ($posicion + 5 < $total) {
         
         cambiarMensajeaLeido($idmensaje);
         
-        $ranking2 = mostrarMensajes($nombre_u,$posicion, 10);
+        $ranking2 = mostrarMensajeEscogido($idmensaje);
         
         while ($fila = mysqli_fetch_array($ranking2)) {
         extract($fila);

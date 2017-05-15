@@ -19,6 +19,7 @@ if (isset($_SESSION['tipo']) == 1) {
     <br>
     <input type="submit" name="ver" value="ver">
 </form>
+<a href="paginaAdmin.php"> Volver</a>
 <?php
 
 if(isset($_POST['ver'])){

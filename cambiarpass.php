@@ -32,7 +32,6 @@ if (isset($_SESSION['tipo'])) {
         if ($contraseña3 == $conrtaseña4) {
             echo $contraseña3;
             $passcif = password_hash($contraseña3, PASSWORD_DEFAULT);
-            echo $passcif;
             cambiarPass($nombre_u, $passcif);
         } else {
             echo 'Contraseña erronea';

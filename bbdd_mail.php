@@ -137,7 +137,7 @@ function cambiarPass($nombre_usuario,$contraseña){
 
 function listadoUsuarios(){
     $con = conexion("msg");
-    $query = "select username from user where username != 'admin' ";
+    $query = "select username from user";
     
     $resultado = mysqli_query($con, $query);
     desconectar($con);
@@ -159,6 +159,15 @@ function enviarMensaje($emisor,$receptor,$fecha,$asunto,$mensaje){
 function mostrarMensajes($nombre_usuario,$posicion, $cantidad){
     $con = conexion("msg");
     $consulta = "select * from message where receiver = '$nombre_usuario' limit $posicion, $cantidad";
+    
+    $resultado = mysqli_query($con, $consulta);
+    desconectar($con);
+    return $resultado;
+}
+
+function mostrarMensajeEscogido($idmensaje){
+    $con = conexion("msg");
+    $consulta = "select * from message where idmessage = '$idmensaje'";
     
     $resultado = mysqli_query($con, $consulta);
     desconectar($con);

@@ -36,7 +36,7 @@ if(!isset($_POST['crear'])){
     //echo $nu."<br>".$pass."<br>".$nombre."<br>".$ape;
     if (existeUsuario($nu) == true ) {
         echo "<p>Ya existe ese nombre de usuario en la bbdd</p>";
-        echo '<a href="index.php"> Volver al índice </a>';
+        echo '<a href="paginaAdmin.php"> Volver al índice </a>';
     }else {
         
         $passcif = password_hash($pass, PASSWORD_DEFAULT);
