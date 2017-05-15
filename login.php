@@ -18,12 +18,14 @@ if(isset($_POST['entrar'])){
         $fecha = $date['year']."-".$date['mon']."-".$date['mday']." ".$date['hours'].":".$date['minutes'].":".$date['seconds'];
         
         registrar_inicioSesion($n_u, $fecha);
-        if ($tipo != 0) {
+        $tipo = $_SESSION["tipo"];
+        echo $tipo;
+        if ($tipo == 1) {
             // Dirigimos al usuario a su homePage.
             header("Location: paginaAdmin.php");                     
-        } else if ($tipo != 1) {
+        } else if ($tipo == 0) {
             // Dirigimos a la página de administrador
-            header("Location: paginaUsuario.php"); 
+            header("Location: paginaUsuario.php");             
         } else { // Aquí no debería entrar nunca
             echo "Tipo de usuario incorrecto";
         }

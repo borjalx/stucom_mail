@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'bbdd_mail.php';
-if (isset($_SESSION['tipo'])) {
+if (isset($_SESSION['tipo']) == 1) {
     $nombre_u = $_SESSION['user'];
     
     $date = getdate();

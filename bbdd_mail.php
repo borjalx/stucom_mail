@@ -225,5 +225,51 @@ function eliminarUsuario($nombre_usuario){
     }
     desconectar($con);
 }
+
+function todosMensajes($posicion, $cantidad){
+    $con = conexion("msg");
+    $query = "select * from message limit $posicion, $cantidad";
+    
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado; 
+}
+
+function totalTodoMensaje(){
+    $con = conexion("msg");
+    $select = "select count(*) as count from message";
+    $resultado = mysqli_query($con, $select);
+    $fila = mysqli_fetch_array($resultado);
+    extract($fila);
+    desconectar($con);
+    return $count;
+}
+
+function usuarios(){
+    $con = conexion("msg");
+    $query = "select * from user";
+    
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado;
+}
+
+function infoIS($nombre_usuario){
+    $con = conexion("msg");
+    $query = "SELECT date from event where user = '$nombre_usuario' and type = 'i' order by date desc limit 1";
+    
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado;
+}
+
+function rankingMensajesEnviados(){
+    $con = conexion("msg");
+    $query = "select count(*) as n_enviados,sender from message group by sender order by count(*) desc";
+    
+    $resultado = mysqli_query($con, $query);
+    desconectar($con);
+    return $resultado;
+}
 ?>
 
